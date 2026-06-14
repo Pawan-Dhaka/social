@@ -1,65 +1,115 @@
+"use client"
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+const words = ["monetizers", "Designer", "Creator", "health educators", "streamers", "vloggers", "fitness coaches", "ecommerce sellers", "retailers", "products"];
 
 export default function Home() {
+
+
+  const [index, setIndex] = useState(0);
+  const router = useRouter()
+
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const [text, settext] = useState("Social/")
+
+  const creteTree = () => {
+    let link;
+    if(text.startsWith("Social/")){
+      link =  text.split("/")[1]
+    } else{
+      link = text
+    }
+    router.push(`/generate?handle=${link}`)
+  }
+  
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <main>
+        <section className="bg-[#c8f20a] min-h-screen grid grid-cols-2  m-auto gap-1  ">
+          <div className=" flex flex-col justify-center items-center gap-5">
+            <h1 className="text-[#254f1a] text-7xl font-bold px-24 ">A link in bio built for you.</h1>
+            <p className="text-[#254f1a] text-[18px] font-bold px-24">Join 70M+ people using &lt;Social/&gt; for their link in bio. One link to help you share everything you create, curate and sell from your Instagram, TikTok, Twitter, YouTube and other social media profiles.</p>
+            <div className="flex gap-4">
+              <input value={text || ""} onChange={(e)=> settext(e.target.value)} className="text-gray-600 bg-white p-4 text-xl rounded-sm focus:outline-none focus:ring-0 focus:border-2 focus:border-[#254f1a] " type="text" placeholder="social/" />
+              <button onClick={()=>creteTree()}  className="text-white bg-[#254f1a] p-4 text-xl rounded-full px-10 font-semibold hover:scale-101">Get started for free</button>
+            </div>
+          </div>
+          <div className=" flex justify-center items-center"><img className=" h-[560px]  rounded-3xl " src="/pawan.png" alt="" /></div>
+        </section>
+
+
+        <section className="bg-[#0a86f2] min-h-screen grid grid-cols-2  m-auto gap-1  ">
+          <div className=" flex justify-center items-center"><img className=" scale-130  h-[560px]  rounded-3xl " src="/Pawan_Dhaka_4K.png" alt="" /></div>
+          <div className=" flex flex-col justify-center items-center gap-5">
+            <h1 className="text-[#c8f20a] text-7xl font-bold px-24 ">Create and customize your Social.com in minutes.</h1>
+            <p className="text-[#c8f20a] text-[18px] font-bold px-24">Connect all your content across social media, websites, stores and more in one link in bio. Customize every detail or let &lt;Social/&gt; automatically enhance it to match your brand and drive more clicks.</p>
+            <div className="flex ">
+              <Link href={"/generate"} className="text-black bg-[#d1e822] p-4 text-xl rounded-full px-18 font-semibold hover:scale-101">Get started for free</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#800810] min-h-screen grid grid-cols-2  m-auto gap-1  ">
+          <div className=" flex flex-col justify-center items-center gap-5">
+            <h1 className="text-[#e9c0e9] text-7xl font-bold px-24 ">Share your Social.com anywhere you like!</h1>
+            <p className="text-[#e9c0e9] text-[18px] font-bold px-24">Add your unique &lt;Social/&gt; URL to all the platforms and places you find your audience. Then use your QR code to drive your offline traffic back to your link in bio.</p>
+            <div className="flex gap-4">
+
+              <Link href={"/generate"} className="text-black bg-[#e9c0e9] p-4 text-xl rounded-full px-18 font-semibold hover:scale-101">Get started for free</Link>
+            </div>
+          </div>
+          <div className=" flex justify-center items-center"><img className=" h-[560px]  rounded-3xl " src="/pic5.png" alt="" /></div>
+        </section>
+
+
+        <section className="bg-[#f0e9cc] min-h-screen grid grid-cols-2  m-auto gap-1  ">
+          <div className=" flex justify-center items-center"><img className=" h-[560px]  rounded-3xl " src="/pic4.png" alt="" /></div>
+          <div className=" flex flex-col justify-center items-center gap-5">
+            <h1 className="text-[#1e2330] text-7xl font-bold px-24 ">Analyze your audience and keep them engaged.</h1>
+            <p className="text-[#1e2330] text-[18px] font-bold px-24">Track your engagement over time, monitor revenue and learn what’s converting your audience. Make informed updates on the fly to keep them coming back.</p>
+            <div className="flex ">
+              <Link href={"/generate"} className="text-[#f0e9cc] bg-[#1e2330] p-4 text-xl rounded-full px-18 font-semibold hover:scale-101">Get started for free</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#f3f3f1] min-h-screen flex  m-auto  pb-4 ">
+          <div className=" flex flex-col justify-center items-center gap-5 mt-36">
+            <h1 className="text-[#1e2330] text-7xl font-bold px-24 ">The only link in bio trusted by 70M+.</h1>
+            <h1 className="text-[#0038c5] text-6xl font-bold px-24 ">{words[index]}.</h1>
+            <div className=" overflow-hidden w-full">
+            <div className="flex gap-12 animate-marquee h-72 -rotate-1 mt-12">
+              <img className="rounded-xl mb-5"  src="/b4.jpeg" alt="" />
+              <img className="rounded-xl mb-5"   src="/g1.png" alt="" />
+              <img className="rounded-xl mb-5"  src="/b3.jpeg" alt=""/>
+              <img  className="rounded-xl mb-5" src="/g2.png" alt="" />
+              <img className="rounded-xl mb-5"  src="/b2.jpeg" alt=""/>
+              <img className="rounded-xl mb-5"  src="/g3.png" alt="" />
+              <img className="rounded-xl mb-5"  src="/b1.jpeg" alt=""/>
+              <img className="rounded-xl mb-5"  src="/g1.png" alt="" />
+              <img className="rounded-xl mb-5"  src="/b2.jpeg" alt=""/>
+              <img className="rounded-xl mb-5"  src="/g2.png" alt="" />
+              <img  className="rounded-xl mb-5" src="/b3.jpeg" alt=""/>
+              <img  className="rounded-xl mb-5" src="/g3.png" alt=""/>
+              <img className="rounded-xl mb-5"  src="/b4.jpeg" alt=""/>
+            </div>
+            </div>
+              <h1 className="text-[#1e2330] text-6xl font-bold mt-10 mx-[25vw]  text-center">The fast, friendly and powerful link in bio tool.</h1>
+              <Link href={"/generate"} className="text-[#f0e9cc] bg-[#1e2330] p-4 text-xl rounded-full px-18 font-semibold hover:scale-101 mt-12">Explore more plans</Link>
+          </div>
+        </section>
+
       </main>
-    </div>
+    </>
   );
 }
