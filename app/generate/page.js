@@ -1,16 +1,15 @@
 "use client"
 import React from 'react'
+import { Suspense } from "react";
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
-const page = () => {
-    const searchParams = useSearchParams()
+const GeneratePageContent = () => {
+const searchParams = useSearchParams()
 
-    // const [link, setlink] = useState("")
-    // const [linktext, setlinktext] = useState("")
-    const [Links, setLinks] = useState([{ link: "", linktext: "" }])
+const [Links, setLinks] = useState([{ link: "", linktext: "" }])
     const [handle, sethandle] = useState(searchParams.get('handle'))
     const [picture, setpicture] = useState("")
     const [claimed, setClaimed] = useState(false);
@@ -33,7 +32,7 @@ const page = () => {
             redirect: "follow"
         };
 
-        const r = await fetch("http://localhost:3000/api/add", requestOptions);
+        const r = await fetch("/api/add", requestOptions);
         const result = await r.json();
         if(result.success){
             toast.success(result.message);
@@ -141,7 +140,9 @@ const page = () => {
 
 
     });
+
     return (
+
         <div className='bg-[#cf8e1c] min-h-screen grid grid-cols-2 mb-0' >
 
             <div className="col1 flex flex-col justify-center items-center gap-8 ">
@@ -182,6 +183,20 @@ const page = () => {
             <div className="col2 flex   "><img className='h-[1000px]' src="/pic6.png" alt="" /></div>
             <ToastContainer />
         </div>
+
+    )
+
+}
+
+
+const page = () => {
+    
+
+    
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+            <GeneratePageContent />
+        </Suspense>
 
     )
 }
