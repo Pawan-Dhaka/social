@@ -143,14 +143,14 @@ const [Links, setLinks] = useState([{ link: "", linktext: "" }])
 
     return (
 
-        <div className='bg-[#cf8e1c] min-h-screen grid grid-cols-2 mb-0' >
+        <div className='bg-[#cf8e1c] min-h-screen grid  grid-cols-1 min-[900px]:grid-cols-2  min-[700px]:-mt-24 min-[900px]:pt-18' >
 
-            <div className="col1 flex flex-col justify-center items-center gap-8 ">
-                <h2 className='text-4xl font-extrabold'>Create your tree of links</h2>
+            <div className="col1 flex flex-col justify-center items-center gap-8 mb-4 ">
+                <h2 className=' text-3xl xl:text-4xl font-extrabold text-center'>Create your tree of links</h2>
                 <div className="flex flex-col gap-2">
                     <h3 className='font-semibold '>Step 1: Claim your username.</h3>
-                    <input value={handle  || ""} onChange={e => { sethandle(e.target.value) }} className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter preffered username(like: pawan123)' type="text" />
-                    <button className='bg-[#b207ac] text-white border border-[#000000] p-3 rounded-lg w-[30vw] hover:scale-101 font-bold disabled:text-slate-950 disabled:bg-[#7c941b] disabled:hover:scale-100 ' disabled={claimed} onClick={checkUsername}>{claimed ? `${handle} is availbe ✅` : "claim "}</button>
+                    <input value={handle  || ""} onChange={e => { sethandle(e.target.value) }} className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter preffered username(like: pawan123)' type="text" />
+                    <button className='bg-[#b207ac] text-white border border-[#000000] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] hover:scale-101 font-bold disabled:text-slate-950 disabled:bg-[#7c941b] disabled:hover:scale-100 ' disabled={claimed} onClick={checkUsername}>{claimed ? `${handle} is availbe ✅` : "claim "}</button>
                 </div>
                 <div className="flex flex-col gap-2 ">
                     <h3 className='font-semibold '>Step 2: Add links.</h3>
@@ -160,27 +160,27 @@ const [Links, setLinks] = useState([{ link: "", linktext: "" }])
                             <input value={item.linktext  || "" }
                                 onChange={(e) =>
                                     handleChange(index, "linktext", e.target.value)
-                                } className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter link text (like: instagram)' type="text" />
+                                } className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter link text (like: instagram)' type="text" />
                             <input value={item.link  || ""}
                                 onChange={(e) =>
                                     handleChange(index, "link", e.target.value)
-                                } className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter link (like: https://www.instagram.com/arisepawan)' type="text" />
+                                } className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter link (like: https://www.instagram.com/arisepawan)' type="text" />
                         </div>
                     })}
                     <div className="flex w-full justify-between">
-                        <button onClick={() => addlink()} className='bg-[#b207ac] text-white border border-[#000000] p-3 rounded-lg w-[30vw] hover:scale-101 font-bold disabled:bg-[#111827] disabled:hover:scale-100 '
+                        <button onClick={() => addlink()} className='bg-[#b207ac] text-white border border-[#000000] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] hover:scale-101 font-bold disabled:bg-[#111827] disabled:hover:scale-100 '
                         disabled={!claimed || Links[0].link.length<3 || Links[0].linktext.length<2 } 
                         > + Add More</button>
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <h3 className='font-semibold '>Step 3: Set your profile picture and Complete Profile.</h3>
-                    <input value={picture  || ""} onChange={e => { setpicture(e.target.value) }} className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter profile picture link(like: https://google.com[File-ID]/view)' type="text" />
-                    <button onClick={() => { submitLinks(Links, handle, picture) }} className='bg-[#8ddf11] text-[#111827] border border-[#000000] p-3 rounded-lg w-[30vw]  hover:scale-101 font-bold disabled:bg-[#111827] disabled:hover:scale-100 disabled:text-white ' disabled={!claimed || picture.length<3} >Complete Profile</button>
+                    <h3 className='font-semibold w-[70vw] min-[900px]:w-[30vw] '>Step 3: Set your profile picture and Complete Profile.</h3>
+                    <input value={picture  || ""} onChange={e => { setpicture(e.target.value) }} className='bg-[#FFFFFF] text-[#111827] border border-[#E5E7EB] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] focus:outline-[#cf8e1c]' placeholder='Enter profile picture link(like: https://google.com[File-ID]/view)' type="text" />
+                    <button onClick={() => { submitLinks(Links, handle, picture) }} className='bg-[#8ddf11] text-[#111827] border border-[#000000] p-3 rounded-lg w-[70vw] min-[900px]:w-[30vw] hover:scale-101 font-bold disabled:bg-[#111827] disabled:hover:scale-100 disabled:text-white ' disabled={!claimed || picture.length<3} >Complete Profile</button>
                 </div>
 
             </div>
-            <div className="col2 flex   "><img className='h-[1000px]' src="/pic6.png" alt="" /></div>
+            <div className="col2 flex order-first   m-auto -mb-28  "><img className=' w-[70vw] min-[900px]:w-[40vw]' src="/pic6.png" alt="" /></div>
             <ToastContainer />
         </div>
 

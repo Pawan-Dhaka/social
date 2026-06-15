@@ -17,7 +17,7 @@ if(!doc){
   
   return <>
   <div className="bg-purple-600 min-h-screen flex justify-center ">
-    <div className="bg-[#e2eaf1] w-[50%] mt-40 rounded-3xl mb-7 flex flex-col ">
+    <div className="bg-[#e2eaf1] w-[90%] min-[1100px]:w-[50%] mt-40 rounded-3xl mb-7 flex flex-col ">
         <div className="flex flex-col justify-center items-center p-2 ">
             <img className="h-44 w-44 overflow-hidden rounded-full border-2" src={doc.pic} alt="user picture" />
             <h2 className="font-bold text-lg">@{doc.handle}</h2>
