@@ -41,7 +41,7 @@ const [Links, setLinks] = useState([{ link: "", linktext: "" }])
             setpicture("")
             notify()
             setTimeout(() => {
-                route.push(`${process.env.NEXT_PUBLIC_HOST}/${handle}`)
+                route.push(`/${handle}`)
             }, 1500);
         } else{
             toast.error(result.message);
